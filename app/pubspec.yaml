@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_navigation_flutter: 0.11.2
+  # Keep the lifecycle plugin compatible with Google Navigation compileSdk 35.
+  flutter_plugin_android_lifecycle: 2.0.26
 
 dev_dependencies:
   flutter_test:

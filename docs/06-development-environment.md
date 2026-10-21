@@ -50,3 +50,23 @@ References: [Flutter installation](https://docs.flutter.dev/install/manual), [An
 ## Review outcome
 
 The three native review lenses found no code blockers. A nonblocking stale verification-status sentence in the validation guide was corrected after acknowledgement as a separate passive documentation follow-up; this follow-up is not represented as part of the frozen reviewed candidate.
+
+## Google map preview attempt (2026-10-21)
+
+- User approved the preview plan and one scoped emulator Google map-load test with the saved key.
+- Pinned google_navigation_flutter0.11.2; added native key placeholder boundary, explicit Open map action and fixed Costa Rica camera; no app location/session/routes calls.
+- RED missing action observed; focused/full widget suite2passed, analyzer clean, check-only format unchanged.
+- Independent scratch missing/blank key probes failed with the expected sanitized configuration error. Only dummy credentials were used in scratch.
+- Initial native build failed: Navigation7.9.0 requires NIO desugaring>=2.1.5. Corrected the stale2.0.4 example to2.1.5 and removed inherited location/background, foreground/location-service, notification, boot and wake permissions.
+- One targeted recheck verified merged permission removal, dummy key metadata and minSdk24, but failed a separate dependency requirement: flutter_plugin_android_lifecycle2.0.35 requires compileSdk36; google_navigation_flutter0.11.2 uses35. No preview APK produced.
+- Gradle implicitly provisioned Platform35rev2 using existing accepted license in the initial attempt; no explicit license acceptance or system install command.
+- No live map opened and no Google request made with the saved key. Existing bootstrap APK does not include the preview. Task emulator stopped; worker scratch/log cleaned after preserving dummy-only evidence in app/build/map-preview-verification/.
+- Feature remains uncommitted/partial pending a scoped dependency-compatibility decision; no native review started. Do not confuse the previous approved bootstrap review with this unverified map change.
+
+### Samsung follow-up (2026-10-21)
+
+Lifecycle2.0.26 resolves the SDK35 mismatch. Independent dummy-key and parent real-key builds pass, as do analyzer and two widget tests. The preview APK was installed and launched on Samsung SM-A175F. GameMaps was not visible to the package-filtered UI probe; no Open map tap or unrelated UI interaction occurred. Await user opening GameMaps for live tiles/back proof. Earlier build-blocked entries above are historical. Feature review and commit remain pending.
+
+### Successful physical-device map test (2026-10-21)
+
+After the user updated the local API key, debug rebuild exited0, Samsung install returned Success, and the app displayed real San Jose/Heredia roads and labels. App-bar Back restored the original home labels; Open map reopened the preview. Sanitized diagnostics and screenshot are ignored under app/build/map-preview-verification/samsung-updated-key-*. No exact Cloud-setting cause is established. Feature review/commit remain pending; prior failed/blank-map entries are historical. No routing, location tracking or car integration was tested.

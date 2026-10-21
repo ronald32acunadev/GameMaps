@@ -2,7 +2,7 @@
 
 A proposed Flutter navigation app that displays real roads with video-game-inspired map themes, starting with GTA San Andreas, on phones, Android Auto, and Apple CarPlay.
 
-**Status:** Flutter application shell created in `app/`; unit/widget checks pass. Android debug APK and emulator launch are verified; native review is approved and acknowledged; bootstrap committed as `e2ddf18`. Google navigation, styling and car integrations are not implemented. No Google Cloud resources have been configured by this work.
+**Status:** Flutter application shell created in `app/`; unit/widget checks pass. Android debug APK and emulator launch are verified; native review is approved and acknowledged; bootstrap committed as `e2ddf18`. Google map preview builds and renders real San Jose-area streets on Samsung SM-A175F; return-to-home and reopening the map are verified. Preview review/commit remain pending. Navigation, game styling and car integrations are not implemented. No Google Cloud resources have been configured by this work.
 
 ## Start here
 
@@ -35,6 +35,8 @@ flutter build apk --debug
 flutter run -d <android-device-id>
 ```
 
-Use an actual Android ID reported by `flutter devices`. The current screen says `Navigation setup pending`; it is not a navigation prototype. The provisional package is `com.example.gamemaps`.
+Use an actual Android ID reported by `flutter devices`. The home screen says `Navigation setup pending`; the new `Open map` action is a bare-map preview, not GPS navigation. Configure your own ignored Android API key before building the preview. The provisional package is `com.example.gamemaps`.
 
 See [bootstrap progress](odd/tasks/android-bootstrap.md) for observed checks, known blockers and commit status.
+
+Current work: [Google map preview plan](docs/superpowers/plans/2026-10-21-google-map-preview.md) and [feature logbook](odd/tasks/google-map-preview.md).
