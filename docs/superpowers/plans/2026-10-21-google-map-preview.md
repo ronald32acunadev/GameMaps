@@ -10,7 +10,7 @@
 
 **Spec:** [Product brief](../../01-product-brief.md), S1, S2, S6-S8; the initial phone-map portion of [P1](../../02-implementation-phases.md). This unit does not complete P1's themed Android Auto feasibility gate.
 
-**Status:** user-approved; Android preview builds and real map rendering plus Back/reopen are verified on Samsung SM-A175F after the user updated the local key. No exact Cloud-setting root cause is proven. Feature review/commit remain pending; historical blocked attempts below describe earlier evidence.
+**Status:** user-approved; Android preview builds and real map rendering plus Back/reopen are verified on Samsung SM-A175F after the user updated the local key. No exact Cloud-setting root cause is proven. Preview source `09217de` is reviewed and acknowledged; historical blocked attempts below describe earlier evidence.
 
 ## Global Constraints
 

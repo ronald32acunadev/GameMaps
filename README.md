@@ -2,7 +2,7 @@
 
 A proposed Flutter navigation app that displays real roads with video-game-inspired map themes, starting with GTA San Andreas, on phones, Android Auto, and Apple CarPlay.
 
-**Status:** Flutter application shell created in `app/`; unit/widget checks pass. Android debug APK and emulator launch are verified; native review is approved and acknowledged; bootstrap committed as `e2ddf18`. Google map preview builds and renders real San Jose-area streets on Samsung SM-A175F; return-to-home and reopening the map are verified. Preview review/commit remain pending. Navigation, game styling and car integrations are not implemented. No Google Cloud resources have been configured by this work.
+**Status:** Flutter application shell created in `app/`; unit/widget checks pass. Android debug APK and emulator launch are verified; native review is approved and acknowledged; bootstrap committed as `e2ddf18`. Google map preview builds and renders real San Jose-area streets on Samsung SM-A175F; return-to-home and reopening the map are verified. Preview source is committed as `09217de`; its native review is approved and acknowledged. Navigation, game styling and car integrations are not implemented. No Google Cloud resources have been configured by this work.
 
 ## Start here
 

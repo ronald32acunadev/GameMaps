@@ -13,9 +13,9 @@ S5. User answered "Si+" to "¿Autorizás ajustar las versiones de dependencias p
 
 ## Tasks
 
-- T1 (S1,S3,S4): inline; Android dependency, desugaring and native key boundary; verified; dependency pin, key probes, merged permissions and dummy/real-key builds pass; commit pending. Risk: items 2/5. Configuration checks use isolated Gradle probes rather than artificial Dart RED.
-- T2 (S1-S4): inline; explicit preview action/page with widget RED/GREEN; implemented; focused and full suite2pass, analyzer clean; commit pending. Same coherent feature unit as T1.
-- T3 (S1,S3,S4): inline coordination plus one independent odd-verify worker for items 2/5; functional proof verified on Samsung; real tiles, Back and reopen pass; native review/commit pending; commit pending. No parallel writer trigger: sequential, coupled behavior.
+- T1 (S1,S3,S4): inline; Android dependency, desugaring and native key boundary; verified; dependency pin, key probes, merged permissions and dummy/real-key builds pass; commit09217de. Risk: items 2/5. Configuration checks use isolated Gradle probes rather than artificial Dart RED.
+- T2 (S1-S4): inline; explicit preview action/page with widget RED/GREEN; implemented; focused and full suite2pass, analyzer clean; commit09217de. Same coherent feature unit as T1.
+- T3 (S1,S3,S4): inline coordination plus one independent odd-verify worker for items 2/5; functional proof verified on Samsung; real tiles, Back and reopen pass; native review/commit09217de; commit09217de. No parallel writer trigger: sequential, coupled behavior.
 
 ## Log
 
@@ -45,3 +45,5 @@ L16. Independent fresh scratch dummy-key build passed with lifecycle2.0.26. Actu
 L17. Explicit lifecycle2.0.26 pin passed independent dummy-key native build and merged permission assertions. Parent analyzer, two widget tests and real-key debug build passed. Samsung SM-A175F install returned Success and launch intent succeeded. Package-filtered UI found no GameMaps nodes; stopped without touching unrelated UI or tapping Open map. Await user opening GameMaps for real tile/back proof. No review/commit/push yet.
 
 L18. User reported black map, then: "Actualize el api key por favor recompila a ver si funciona" and "ya esta habilitado" after reconnect request. Rebuild exited0 with ignored updated key; no key disclosure. Samsung install Success/launch succeeded. Screenshot shows real San Jose/Heredia streets and labels, unlike prior black view. No source or Cloud-setting change by agent in this test; exact prior cause not proven. App-bar Back restored GameMaps/Navigation setup pending/Open map; explicit Open map reopened preview. Functional proof passes; native review/commit remain pending, no push. Ignored screenshot/log names samsung-updated-key-map.png and samsung-updated-key-diagnostic.log.
+
+L19. Source commit09217de closes the verified preview unit. Fresh format0changes/analyzer clean/tests2pass. User selected review option1; four native immutable review lenses had no findings; exact acknowledgement returned action acknowledged/authority burned for review-5fcd2bd1bc56495f. No push. The next approved map-first/search feature replaces the temporary launcher intentionally.

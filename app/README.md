@@ -1,6 +1,6 @@
 # GameMaps Android map preview
 
-**Current verification:** Android debug build and Samsung installation pass with the user-updated local API key. Real map streets/labels around San Jose were visually verified; app-bar Back restores GameMaps / Navigation setup pending / Open map, and reopening works. Previous analyzer/two-widget-test and independent dummy-key build/manifest checks passed. Feature review and commit remain pending.
+**Current verification:** Android debug build and Samsung installation pass with the user-updated local API key. Real map streets/labels around San Jose were visually verified; app-bar Back restores GameMaps / Navigation setup pending / Open map, and reopening works. Previous analyzer/two-widget-test and independent dummy-key build/manifest checks passed. Preview source is committed as `09217de`; its native review is approved and acknowledged.
 
 The home screen preserves `GameMaps` and `Navigation setup pending`. Tap `Open map` to open a Google map centered approximately on San Jose, Costa Rica; return with the app bar or Android Back. This preview does not track your position, request location permission, calculate routes, initialize guidance, or provide Android Auto/CarPlay support.
 
