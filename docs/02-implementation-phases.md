@@ -1,7 +1,7 @@
 # Implementation phases
 
 **Status:** roadmap approved by the user on 2026-10-21; not an execution-ready task plan.
-**Current position:** the [Android bootstrap plan](superpowers/plans/2026-10-21-android-bootstrap.md) is approved and executing. Toolchain, shell tests, Android debug APK and Android emulator launch pass; Git commits/native review remain pending. P0 is not complete.
+**Current position:** the [Android bootstrap plan](superpowers/plans/2026-10-21-android-bootstrap.md) is approved and executing. Toolchain, shell tests, Android debug APK and Android emulator launch pass; native review is approved and acknowledged; the local bootstrap is committed as `e2ddf18`. P0 is not complete.
 
 The sequence validates the highest-uncertainty part first: a styled Google navigation map on the car display. Do not build the complete app before proving that premise.
 

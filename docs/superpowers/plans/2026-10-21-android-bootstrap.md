@@ -10,7 +10,7 @@
 
 **Spec:** [Product brief](../../01-product-brief.md), S1, S4, S8 and S9; [P0 roadmap](../../02-implementation-phases.md); [approved architecture direction](../../03-architecture.md).
 
-**Status:** approved for execution by the user on 2026-10-21 ("si dale comencemos"). This plan covers the local bootstrap portion of P0, not all P0 and not P1. The user approved the project direction with "LIsto perfecto comencemos"; this detailed plan had not yet been presented at that point.
+**Status:** local bootstrap completed on 2026-10-21; implementation commit `e2ddf18`, observed results in the environment report and feature logbook. This plan covers the local bootstrap portion of P0, not all P0 and not P1. The user approved the project direction with "LIsto perfecto comencemos"; this detailed plan had not yet been presented at that point.
 
 ## Global Constraints
 
@@ -37,12 +37,12 @@
 
 **Interfaces:** consumes the observed inventory; produces actual Flutter/Dart versions, doctor findings, Android tooling paths, compatible Java selection, and the available test target. This is setup evidence, not a Dart API.
 
-- [ ] Announce download/disk and system-change implications before an SDK initialization or installation. Do not uninstall existing tools, accept licenses for the user, or use a remote machine/session.
-- [ ] Run `flutter --version` and `flutter doctor -v`. Record their exact outcomes, not the Snap package's version as the Flutter version.
-- [ ] If Android tools are missing, follow the current official Android setup instructions. Stop only for a required native consent/license, unavailable install permission, or another concrete unresolved constraint; preserve progress.
-- [ ] Select a compatible JDK based on the actual Flutter/Gradle diagnostics. Do not assume the observed Java 25 is either supported or broken, and do not change system-wide Java defaults as a shortcut.
-- [ ] Run `flutter devices`. Record an authorized Android target or explicitly mark device launch blocked. A Linux/web target does not satisfy the Android launch gate.
-- [ ] Update the inventory with actual versions, device availability and remaining blockers.
+- [x] Announce download/disk and system-change implications before an SDK initialization or installation. Do not uninstall existing tools, accept licenses for the user, or use a remote machine/session.
+- [x] Run `flutter --version` and `flutter doctor -v`. Record their exact outcomes, not the Snap package's version as the Flutter version.
+- [x] If Android tools are missing, follow the current official Android setup instructions. Stop only for a required native consent/license, unavailable install permission, or another concrete unresolved constraint; preserve progress.
+- [x] Select a compatible JDK based on the actual Flutter/Gradle diagnostics. Do not assume the observed Java 25 is either supported or broken, and do not change system-wide Java defaults as a shortcut.
+- [x] Run `flutter devices`. Record an authorized Android target or explicitly mark device launch blocked. A Linux/web target does not satisfy the Android launch gate.
+- [x] Update the inventory with actual versions, device availability and remaining blockers.
 
 **Verification:** toolchain setup has no meaningful deterministic RED test. `flutter doctor -v` must report a usable Android toolchain before Android build readiness is claimed. Device readiness is a separate result. Cloud credentials are not required for this task.
 
@@ -52,11 +52,11 @@
 
 **Interfaces:** `GameMapsApp` is a public `StatelessWidget` in `app/lib/app.dart` with a `const GameMapsApp({super.key})` constructor and `Widget build(BuildContext context)`. `void main()` in `app/lib/main.dart` launches `const GameMapsApp()`. No Google SDK integration is exposed yet.
 
-- [ ] Confirm `app/` does not already exist; if it does, inspect and preserve its content instead of regenerating over it.
-- [ ] Generate the project with `flutter create --empty --project-name gamemaps --org com.example --platforms=android,ios --no-pub app`. Platform wrappers may be generated without proving they build.
-- [ ] Inspect generated files and configure repository ignores before fetching dependencies. Ignore keys, signing files, SDK/build caches and local settings without ignoring required manifests or lockfiles.
-- [ ] In `app/`, run `flutter pub get` and retain the app lockfile. No third-party package is needed in this unit.
-- [ ] Write the following test before implementing the application widget:
+- [x] Confirm `app/` does not already exist; if it does, inspect and preserve its content instead of regenerating over it.
+- [x] Generate the project with `flutter create --empty --project-name gamemaps --org com.example --platforms=android,ios --no-pub app`. Platform wrappers may be generated without proving they build.
+- [x] Inspect generated files and configure repository ignores before fetching dependencies. Ignore keys, signing files, SDK/build caches and local settings without ignoring required manifests or lockfiles.
+- [x] In `app/`, run `flutter pub get` and retain the app lockfile. No third-party package is needed in this unit.
+- [x] Write the following test before implementing the application widget:
 
 ```dart
 import 'package:flutter/material.dart';
@@ -76,14 +76,14 @@ void main() {
 }
 ```
 
-- [ ] Run `flutter test test/app_test.dart`; observe RED because the application widget is not implemented. Record the observed failure rather than claiming an expected failure occurred.
-- [ ] Implement `GameMapsApp` as a Material application with a simple screen containing exactly the tested title and status; launch it from `main()`. Do not add a decorative fake map or the default counter demo.
-- [ ] Run the focused test again; observe GREEN. Refactor only while it remains green.
-- [ ] Normalize authored Dart files with `dart format lib test` before final verification.
-- [ ] Run `flutter analyze`, `flutter test`, and `flutter build apk --debug` in `app/`; record each observed result. Missing Android build tools means partial verification, not a passing bootstrap.
-- [ ] On an authorized Android target, run `flutter run -d <observed-device-id>` and confirm the same screen launches. Substitute the ID returned by Task 1, not an invented device ID; stop the app after the check.
-- [ ] Review the diff for preserved root documentation, no secrets, no unexpected platform targets, and no unrelated tooling changes. Record iOS/CarPlay as not run.
-- [ ] Update the README, environment inventory and feature logbook with observed commands/results. Commit the coherent work unit only under the repository's applicable authorized work-unit policy; do not push.
+- [x] Run `flutter test test/app_test.dart`; observe RED because the application widget is not implemented. Record the observed failure rather than claiming an expected failure occurred.
+- [x] Implement `GameMapsApp` as a Material application with a simple screen containing exactly the tested title and status; launch it from `main()`. Do not add a decorative fake map or the default counter demo.
+- [x] Run the focused test again; observe GREEN. Refactor only while it remains green.
+- [x] Normalize authored Dart files with `dart format lib test` before final verification.
+- [x] Run `flutter analyze`, `flutter test`, and `flutter build apk --debug` in `app/`; record each observed result. Missing Android build tools means partial verification, not a passing bootstrap.
+- [x] On an authorized Android target, run `flutter run -d <observed-device-id>` and confirm the same screen launches. Substitute the ID returned by Task 1, not an invented device ID; stop the app after the check.
+- [x] Review the diff for preserved root documentation, no secrets, no unexpected platform targets, and no unrelated tooling changes. Record iOS/CarPlay as not run.
+- [x] Update the README, environment inventory and feature logbook with observed commands/results. Commit the coherent work unit only under the repository's applicable authorized work-unit policy; do not push.
 
 **Verification:** the focused widget test establishes RED/GREEN for the shell. The suite and debug build establish different evidence; a passing test suite alone is not an Android build or device launch. This adds a new app and does not change an existing application command, so there is no baseline application behavior to run differentially.
 
@@ -98,3 +98,7 @@ P1 must still demonstrate Costa Rican geography, accepted San Andreas-inspired s
 - [Flutter Android setup](https://docs.flutter.dev/platform-integration/android/setup)
 - [Google Navigation Flutter requirements](https://github.com/googlemaps/flutter-navigation-sdk#requirements)
 - [Google Android Auto integration](https://developers.google.com/maps/documentation/navigation/android-sdk/android-auto)
+
+## Execution outcome
+
+Both bootstrap tasks completed. Toolchain diagnostics, RED/GREEN, analyzer, suite, independent APK build and Android emulator launch were observed. Exact native review was approved and acknowledged; only passive documentation changed afterward. Git identity is configured and the reviewed app tree is committed as `e2ddf18`. Commands, conditional setup steps, transient failures and recoveries are recorded in the feature logbook; no SDK license was accepted by the agent. Steps conditional on missing tooling/JDK changes were not needed, although Gradle implicitly fetched build components using existing licenses. No Google integration, physical-phone/car test or Apple build is implied.

@@ -11,8 +11,8 @@ S4. The approved plan requires actual toolchain evidence, a `GameMapsApp` widget
 
 ## Tasks
 
-- T1 (S1,S3,S4): inline; toolchain diagnostics and readiness inventory; diagnostics complete; commit pending. Setup RED exception: no meaningful deterministic behavior test. Risk: item 5 (toolchain/environment).
-- T2 (S1-S4): inline; scaffold `app/`, widget RED/GREEN, checks and independent verification passed; commit/native review pending; commit pending. Risk: item 5 (new dependencies/generated build environment). No parallel writer reason applies.
+- T1 (S1,S3,S4): inline; toolchain diagnostics and readiness inventory; complete; commit `e2ddf18`. Setup RED exception: no meaningful deterministic behavior test. Risk: item 5 (toolchain/environment).
+- T2 (S1-S4): inline; scaffold `app/`, widget RED/GREEN, complete; checks, independent verification and native review passed; commit `e2ddf18`. Risk: item 5 (new dependencies/generated build environment). No parallel writer reason applies.
 
 ## Log
 
@@ -36,3 +36,11 @@ L13. Recovery: parent initially copied the APK relative to app/ into app/app/bui
 L14. Android smoke test passed on Medium_Phone_API_37.0/emulator-5554 using the independently built APK and Flutter's documented --use-application-binary option. Activity com.example.gamemaps/.MainActivity resumed; UI hierarchy contained GameMaps and Navigation setup pending. Screenshot/logs retained under ignored app/build/bootstrap-verification/. No physical head-unit test or Apple build performed.
 L15. A first prebuilt launch command was run from the repository root rather than app/ and failed to locate package_config/APK. Re-running from app/ succeeded. Removed only the generated root build stamp/empty directories created by that failed command. No source fix was needed.
 L16. Verified scratch directory removed after preserving logs and APK. Application stopped and only the emulator started for this task shut down. Flutter run stdin was not interactive; used adb app stop/emulator shutdown instead of an unavailable q input.
+
+L17. User answered "1" to the exact native consent menu, granting this candidate's review. Three captures ran concurrently (risk, readability, reliability); final capture approved. Exact acknowledge-approved succeeded with authority burned. Lineage review-da99f36b9f3425c0; reviewed target sha256:9523338f5d4cfa7121eaa9943f22aa395dd8e789f28299265c4be00ab97278f4. Review is informational; it does not authorize publication.
+L18. One nonblocking readability advisory identified stale "commands have not been run" prose in docs/05-validation-and-release.md. After acknowledgement, corrected that sentence as a separate passive documentation follow-up and recorded this outcome; application source bytes unchanged. No correction transaction or repeat review was opened.
+L19. User will test on a physical phone later. Bootstrap checks are verified, but commits are still pending the user's real Git author name/email. P0 remains incomplete until Cloud readiness is confirmed; no Google requests were made.
+
+L20. User: "LISto ya setie el git". Verified author identity is configured without changing or inventing it. Rechecked check-only Dart formatting (0 changes), analyzer (no issues), suite (1 pass), staged whitespace and secret exclusions.
+L21. Created `e2ddf18` (`feat: bootstrap Flutter application`), tree e58ae1f732853806346b23b2bfc39ee666babc28 exactly matching the acknowledged frozen candidate. Post-commit assessment: medium, review_due=false, reason under_budget. No new review for unchanged approved bytes. Initial commit includes previously approved product documentation and generated platform wrappers; no publication or remote operation.
+L22. Local bootstrap T1/T2 completed. Separate passive follow-up updates verification wording, approval/commit status and this log; application source unchanged. P0 overall still requires Cloud readiness; ask for that state before any Google integration. Physical-phone, Android Auto and Apple-platform tests remain pending. Rollback boundary: app/ and bootstrap documentation are the new standalone unit; there was no previous application runtime to regress.

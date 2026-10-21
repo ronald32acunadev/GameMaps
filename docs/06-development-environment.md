@@ -40,9 +40,13 @@
 
 ## Remaining gates
 
-1. Configure the user's actual Git author identity before commits; do not invent one.
-2. Complete baseline-dependent native review when the repository supports it; no approval is claimed.
+1. Git identity is now verified and the local bootstrap is committed as `e2ddf18`; no author configuration was invented or changed by the agent.
+2. Native review of the frozen bootstrap candidate was approved and acknowledged on 2026-10-21; authority was burned. No commit or publication is implied. Historical baseline differential proof remains unavailable.
 3. Confirm Google Cloud readiness and plan P1; bootstrap has made no Google requests.
 4. Keep iOS/CarPlay and physical Android Auto validation pending.
 
 References: [Flutter installation](https://docs.flutter.dev/install/manual), [Android setup](https://docs.flutter.dev/platform-integration/android/setup).
+
+## Review outcome
+
+The three native review lenses found no code blockers. A nonblocking stale verification-status sentence in the validation guide was corrected after acknowledgement as a separate passive documentation follow-up; this follow-up is not represented as part of the frozen reviewed candidate.

@@ -34,7 +34,7 @@ Start with simulated movement and parked tests. A passenger should operate the a
 
 Once source exists, use focused unit/widget tests for application-owned permission states, destination flow, trip lifecycle, errors, and theme configuration. Observe a failing test before implementing a deterministic behavior where meaningful. Mock tests cannot establish real route quality, projected styling, audio behavior, or platform approval.
 
-Planned baseline checks after Flutter scaffolding: `flutter analyze` and `flutter test`. These commands have not been run and do not replace device tests. Add native build/test commands to the phase plan once the selected toolchain is known.
+Observed bootstrap checks: `flutter analyze` passed without issues and `flutter test` passed one widget test. The Android debug build and emulator launch also passed, as recorded in the environment report. These shell checks do not establish navigation or car integration; those matrix rows remain pending.
 
 ## Release gate
 
