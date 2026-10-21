@@ -1,0 +1,11 @@
+# Local build credentials and private configuration
+**/local.properties
+**/key.properties
+**/*.jks
+**/*.keystore
+**/.env
+**/.env.*
+!**/.env.example
+
+# Per-session scratch (application-generated ignores live under app/)
+.superpowers/
