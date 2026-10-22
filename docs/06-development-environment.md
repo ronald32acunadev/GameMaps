@@ -70,3 +70,9 @@ Lifecycle2.0.26 resolves the SDK35 mismatch. Independent dummy-key and parent re
 ### Successful physical-device map test (2026-10-21)
 
 After the user updated the local API key, debug rebuild exited0, Samsung install returned Success, and the app displayed real San Jose/Heredia roads and labels. App-bar Back restored the original home labels; Open map reopened the preview. Sanitized diagnostics and screenshot are ignored under app/build/map-preview-verification/samsung-updated-key-*. No exact Cloud-setting cause is established. Preview source `09217de` is reviewed and acknowledged; prior failed/blank-map entries are historical. No routing, location tracking or car integration was tested.
+
+### Native map-home integration (2026-10-21)
+
+Foreground location and native Places connectors are now implemented. Parent/independent analyzer and13Flutter tests pass;13production-native tests and3independent lifecycle probes pass. Dummy and real-key debug builds pass. Both SDK graphs align Navigation7.9.0/Places4.3.1 without standalone Maps; merged manifest permits foreground coarse/fine only among the controlled location/service capabilities.
+
+ADB has no attached device, so the integrated native APK has not replaced the earlier UI-only Samsung build. Physical foreground permission/location and live Places search are unverified. No Places query, Cloud change or native OS consent acceptance was performed by the agent. Source commits and final feature review remain pending.

@@ -58,6 +58,12 @@ kotlin {
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs_nio:2.1.5")
+    implementation("com.google.android.libraries.navigation:navigation:7.9.0")
+    implementation("com.google.android.libraries.places:places:4.3.1") {
+        // Navigation already bundles the Maps SDK.
+        exclude(group = "com.google.android.gms", module = "play-services-maps")
+    }
+    testImplementation("junit:junit:4.13.2")
 }
 
 flutter {

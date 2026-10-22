@@ -1,34 +1,40 @@
-# GameMaps Android map preview
+# GameMaps Android map home
 
-**Current verification:** Android debug build and Samsung installation pass with the user-updated local API key. Real map streets/labels around San Jose were visually verified; app-bar Back restores GameMaps / Navigation setup pending / Open map, and reopening works. Previous analyzer/two-widget-test and independent dummy-key build/manifest checks passed. Preview source is committed as `09217de`; its native review is approved and acknowledged.
+**Current status:** direct map home and native foreground-location/Google Places connectors are implemented. Analyzer,13Flutter tests,13native production tests, independent lifecycle probes and debug builds pass. The integrated APK has not been installed on the Samsung: ADB currently has no attached device. Physical location/Places behavior, final feature review and commits remain pending.
 
-The home screen preserves `GameMaps` and `Navigation setup pending`. Tap `Open map` to open a Google map centered approximately on San Jose, Costa Rica; return with the app bar or Android Back. This preview does not track your position, request location permission, calculate routes, initialize guidance, or provide Android Auto/CarPlay support.
+## Phone flow
 
-## Configure Android locally
+Open GameMaps to show the real map without a launcher. With foreground location permission and a fresh fix, the camera centers on the user. Recenter requests another foreground fix. Denial, disabled providers or a15-second timeout leave the map/search usable with an explicitly non-current San Jose reference.
 
-Keep your own key in ignored `android/local.properties`, alongside existing SDK paths:
+Search places opens Google's native autocomplete UI. Selecting a place resolves its identity/name/address/coordinates and displays one destination marker/summary. Cancellation or failure preserves the previous selection; Clear destination removes it. There are no routes, guidance, game themes or car integrations yet.
 
-```properties
-MAPS_API_KEY=YOUR_API_KEY_HERE
-```
+## Android configuration
 
-Do not replace SDK properties or commit the key. Gradle requires a nonblank key and supplies the manifest metadata through a placeholder. API/application restrictions remain necessary because a compiled mobile app contains the credential; an ignored local file does not make the distributed APK secret.
+Keep `MAPS_API_KEY` in ignored `android/local.properties`, never in Dart or version control. The native build validates a nonblank key and injects it through a manifest placeholder. APK credentials remain extractable: use Android package/signing-certificate and API restrictions, not secrecy of the binary.
 
-The development application ID is `com.example.gamemaps`; use the actual signing-certificate SHA-1 for restrictions. Google Navigation and Maps SDK for Android must be enabled in the same billed Cloud project. Do not send keys in chat or relax restrictions just to make a test pass.
+The project/key needs the existing map/navigation services and **Places API (New)** for search. Billing applies according to Google's service/field/session rules. Do not remove key restrictions to work around a failure. Cloud configuration is user-owned; no automatic service enablement.
 
-## Run checks
+Pinned integration:
+- `google_navigation_flutter`0.11.2 and lifecycle support2.0.26 preserve compileSdk35 plugin compatibility.
+- Native Navigation7.9.0 is also explicit on the app compile classpath.
+- Places4.3.1 excludes standalone `play-services-maps`, because Navigation bundles Maps.
+- Android minSdk24, NIO desugaring2.1.5, Java17 bytecode.
+
+Only foreground coarse/fine location is requested; approximate permission works. Background location/service, notifications, boot and wake permissions remain removed. No app-owned location history or key/query/coordinate logging is added.
+
+## Verification
 
 ```bash
 flutter pub get
 flutter analyze
 flutter test
-flutter build apk --debug
+flutter build apk --debug --no-pub
 ```
 
-For a live test, use `flutter devices`, then `flutter run -d <android-device-id>` with an authorized Android target. Opening the map can produce metered Google service usage; automated tests do not use the actual key or prove remote authentication. Native platform-view creation alone is not proof of rendered map tiles.
+Native unit tests use `./gradlew :app:testDebugUnitTest` from `android/`. Independent native/build checks run in fresh outside-worktree copies with dummy local properties; never copy the actual key/signing files into them.
 
-The official `google_navigation_flutter` dependency is pinned to 0.11.2. Android minSdk is 24 with NIO core-library desugaring2.1.5, required by native Navigation7.9.0. The preview manifest explicitly removes inherited location, foreground-service, notification, boot and wake-lock permissions; add actual navigation capabilities only in their separately approved phase. No map ID or game style is configured yet. Do not initialize a navigation session for this bare-map preview.
+Device validation must separately observe the actual OS permission/fix and a bounded live Places selection. The user accepts native OS consent; the agent does not click permission dialogs or alter device settings. An agent-run live Places query requires explicit authorization. Build/widget proof alone is not real-service proof.
 
-Android and iOS wrappers exist, but only the Android preview is in this unit. iOS/CarPlay is unverified and needs macOS/Xcode plus its own key/configuration. Generated debug release-signing defaults are not production signing. No publication is authorized.
+Android-only current evidence does not establish iOS/CarPlay support. No Mac is available. Release-signing defaults remain development-only. No push/publication is authorized.
 
-See [project documentation](../README.md), [map-preview progress](../odd/tasks/google-map-preview.md), and the [environment report](../docs/06-development-environment.md) for observed—not assumed—verification.
+See [feature progress](../odd/tasks/map-first-place-search.md) and [environment report](../docs/06-development-environment.md).
