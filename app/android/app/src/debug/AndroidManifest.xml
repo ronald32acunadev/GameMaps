@@ -4,4 +4,9 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <instrumentation
+        android:name="com.example.gamemaps.car.BootstrapProbe"
+        android:targetPackage="${applicationId}"
+        android:functionalTest="true"
+        android:handleProfiling="false" />
 </manifest>

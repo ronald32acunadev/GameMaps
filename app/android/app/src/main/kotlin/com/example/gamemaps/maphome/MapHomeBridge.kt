@@ -35,10 +35,10 @@ class MapHomeBridge(activity: Activity, messenger: BinaryMessenger) {
         if (requestCode == AndroidLocationPort.PERMISSION_REQUEST) location.onPermissionResult()
     }
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) = placesPort.onActivityResult(requestCode, resultCode, data)
-    fun dispose() {
+    fun dispose(clearChannel: Boolean = true) {
         location.dispose()
         places.dispose()
         placesPort.dispose()
-        channel.setMethodCallHandler(null)
+        if (clearChannel) channel.setMethodCallHandler(null)
     }
 }
