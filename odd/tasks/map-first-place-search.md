@@ -13,9 +13,9 @@ S5. "Si me parece correcto" approves written design; "Si" approves the implement
 ## Tasks
 
 - T0 (S1-S5): inline coordination + independent dummy-key compatibility verification; verified; prior preview closed, published SDK probe compiled/built with aligned graph; commit351d81d holds prior closure. Risk: item5.
-- T1 (S1,S2,S4,S5): inline; direct map home/controller/injection and tests; verified in source, commit pending alongside native integration. Risk: items3/4.
-- T2 (S1,S3,S5): inline; foreground location/recenter and tests; implemented, own and independent checks pass; device verification pending. Risk: items2/4.
-- T3 (S2,S4,S5): inline; native Places search/selection and tests; implemented, own and independent checks pass; user-reported live search success after key authorization, complete physical scenario coverage/commit pending. Risk: items2/4/5.
+- T1 (S1,S2,S4,S5): inline; direct map home/controller/injection and tests; verified in source, Flutter commit f325713. Risk: items3/4.
+- T2 (S1,S3,S5): inline; foreground location/recenter and tests; implemented in ab21f2a, own and independent checks pass; complete physical scenarios pending. Risk: items2/4.
+- T3 (S2,S4,S5): inline; native Places search/selection and tests; implemented, own and independent checks pass; user-reported live search success after key authorization, complete physical scenario coverage pending; native commit ab21f2a. Risk: items2/4/5.
 - T4 (S1-S5): inline coordination + independent verifier; integrated suite/dummy-native/Samsung checks and applicable native review; pending. No writer reason: coupled sequential interfaces, no parallel independent behavior units.
 
 ## Log
@@ -51,3 +51,5 @@ L15 (2026-10-21, reconciled after resume). Later authorized Samsung install retu
 L16. User reaffirmed Android-only current scope and Android Auto as the principal journey. Roadmap readback shows P1 car/style feasibility precedes completed P2/P3, contrary to prior assistant advice to finish the complete phone GPS first. Next prototype is tracked separately in odd/tasks/android-auto-feasibility.md. Preserve this feature's independent-check evidence and pending commits/review/device cases; do not mark it closed merely because work proceeds toward the car.
 
 L17 (2026-10-21). Before car source edits, fresh isolated baseline verification passes analyzer/13Flutter/13native/debug APK with dummy credentials. Parent spot-check reran13Flutter tests and Dart format check found0changes. Graph retains Navigation7.9.0/Places4.3.1 with no standalone Maps; merged foreground permission declarations present,6excluded permissions absent. No new Places request or source fix. RDD currently OFF by global preference, so source closure is disabled/unmanaged rather than a new review. Split current Flutter-home and coherent native integration into the previously approved local commits; remaining physical scenarios stay pending.
+
+L18 (2026-10-21). Source boundaries committed: f325713 Flutter home/destination state with tests/spec, ab21f2a native foreground-location/Places with tests/docs. Fresh dummy verification and parent spot-check pass; no new RED required because this unit only commits previously implemented/tested source. RDD off/global: disabled/unmanaged. Physical permission/location/details matrix remains partial; source baseline does not imply complete device acceptance.
