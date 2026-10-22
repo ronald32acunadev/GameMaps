@@ -30,6 +30,7 @@ Required output is `bootstrap=pass`; any `failed_step` is a blocker to investiga
 | Prior phone regression suite/build | Fresh dummy checks, 13 Flutter and 13 native tests, Android debug build | Passed before car edits |
 | Engine ownership and versioned host policy | RED missing contracts observed; fresh independent analyzer, 17 Flutter/19 native tests and debug build pass; parent Flutter spot-check passes | Automated subset passed; runtime gate remains pending |
 | Headless Dart runtime roundtrip | Authorized isolated dummy-key instrumentation on Samsung: install success, `bootstrap=pass`, uninstall success; normal app installation unchanged | Passed for engine/host channel only, not an Android Auto surface |
+| Navigation session setup | Authorized normal-app update succeeded; zero-destination preflight returned `unlock_phone` before opening Activity/terms/SDK | Pending unlocked Samsung; no destination allowance consumed |
 | Phone Activity destroyed while native navigation is active | Requires accepted terms, eligible location service and bounded live SDK test | Pending; not replaced by engine-policy unit tests |
 | Android Auto discovery/cold launch/surface | Car service/template not implemented in bootstrap increment | Pending |
 | Shared demo route, voice, screen-off, reconnect and stop | Navigation owner and physical scenarios not implemented/run | Pending |
@@ -49,3 +50,18 @@ The independently built isolated APK is retained under ignored `app/build/androi
 On 2026-10-21 the user answered "SI" to installing, running and removing the isolated dummy-key probe via ADB. APK package/key boundaries were checked before transfer. The probe passed with no phone Activity initially open, no process crash and no missing instrumentation. The isolated package was then removed successfully; the original GameMaps installation path remained unchanged. No live route, navigation terms/permission acceptance, car service or head-unit interaction occurred.
 
 Sanitized machine evidence is retained in ignored `app/build/android-auto-verification/samsung-bootstrap-result.json`. The native Navigation progress/arrival-listener gate remains pending and must not be inferred from synthetic host events. Any next real-key navigation test needs separate bounded request/device-update consent.
+
+## Zero-destination Navigation setup preflight
+
+The user separately approved updating normal GameMaps and at most one fixed public San José demo route request with the existing key, with possible usage charges and no Cloud/key-restriction changes. Before consuming that allowance, a narrow debug-only gateway checks terms and session initialization, then cleans up. It exposes no destination/guidance/simulation method. The human accepts or declines SDK terms and native permission prompts.
+
+`NavigationSetupProbe` requires `allow_setup=true`, the normal package and an unlocked phone. Its Dart endpoint exists only in debug mode. The existing foreground-only manifest is unchanged. Invoke only under the recorded device consent:
+
+```bash
+adb -s <authorized-device> shell am instrument -w -e allow_setup true \
+  com.example.gamemaps/com.example.gamemaps.car.NavigationSetupProbe
+```
+
+Current physical result (2026-10-21): normal-app update `Success`; preflight `unlock_phone`, no crash and zero destination requests. It stopped before opening the phone Activity, SDK terms or a navigator. Unlock the Samsung before resuming this already-authorized check. Do not reinterpret the locked-phone state as an API/key failure or an authorization success. The single destination allowance remains unused. Evidence: ignored `app/build/android-auto-verification/samsung-navigation-setup-result.json`.
+
+Automated source checks passed after observed RED: 22 Flutter tests, 19 native tests, analyzer, dummy debug build and release-manifest checks. Both instrumentation runners are absent from release. A separately authorized local real-key build succeeded; the real credential was neither copied into verification scratch nor printed.
