@@ -1,6 +1,6 @@
 # Android Auto feasibility evidence
 
-**Current result: pending.** The retained-engine bootstrap is under verification; the application is not yet advertised as an Android Auto navigation app. No car surface, route or style acceptance has been demonstrated.
+**Current result: partial.** The isolated retained-engine/host-channel probe passed on Samsung; the application is not yet advertised as an Android Auto navigation app. No car surface, route or style acceptance has been demonstrated.
 
 ## Source boundaries
 
@@ -29,7 +29,7 @@ Required output is `bootstrap=pass`; any `failed_step` is a blocker to investiga
 |---|---|---|
 | Prior phone regression suite/build | Fresh dummy checks, 13 Flutter and 13 native tests, Android debug build | Passed before car edits |
 | Engine ownership and versioned host policy | RED missing contracts observed; fresh independent analyzer, 17 Flutter/19 native tests and debug build pass; parent Flutter spot-check passes | Automated subset passed; runtime gate remains pending |
-| Headless Dart runtime roundtrip | Debug-only isolated probe; no physical run yet | Pending device authorization |
+| Headless Dart runtime roundtrip | Authorized isolated dummy-key instrumentation on Samsung: install success, `bootstrap=pass`, uninstall success; normal app installation unchanged | Passed for engine/host channel only, not an Android Auto surface |
 | Phone Activity destroyed while native navigation is active | Requires accepted terms, eligible location service and bounded live SDK test | Pending; not replaced by engine-policy unit tests |
 | Android Auto discovery/cold launch/surface | Car service/template not implemented in bootstrap increment | Pending |
 | Shared demo route, voice, screen-off, reconnect and stop | Navigation owner and physical scenarios not implemented/run | Pending |
@@ -43,3 +43,9 @@ Automated checks use dummy credentials. No live route/style request, Cloud mutat
 Current native review mode reads globally disabled; ordinary automated and independent risk checks still apply. No fabricated review approval or automatic mode change is recorded.
 
 The independently built isolated APK is retained under ignored `app/build/android-auto-verification/bootstrap-isolated/app-debug.apk`; sanitized build/test/manifest evidence is in adjacent directories. The normal user APK is not replaced. Release-manifest verification confirms the debug instrumentation is excluded from release.
+
+## Authorized Samsung bootstrap result
+
+On 2026-10-21 the user answered "SI" to installing, running and removing the isolated dummy-key probe via ADB. APK package/key boundaries were checked before transfer. The probe passed with no phone Activity initially open, no process crash and no missing instrumentation. The isolated package was then removed successfully; the original GameMaps installation path remained unchanged. No live route, navigation terms/permission acceptance, car service or head-unit interaction occurred.
+
+Sanitized machine evidence is retained in ignored `app/build/android-auto-verification/samsung-bootstrap-result.json`. The native Navigation progress/arrival-listener gate remains pending and must not be inferred from synthetic host events. Any next real-key navigation test needs separate bounded request/device-update consent.
