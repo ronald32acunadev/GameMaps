@@ -37,4 +37,4 @@ Device validation must separately observe the actual OS permission/fix and a bou
 
 Android-only current evidence does not establish iOS/CarPlay support. No Mac is available. Release-signing defaults remain development-only. No push/publication is authorized.
 
-See [feature progress](../odd/tasks/map-first-place-search.md) and [environment report](../docs/06-development-environment.md).
+See [implementation phases](../Fases/02-implementation-phases.md) and [environment report](../Fases/06-development-environment.md).
