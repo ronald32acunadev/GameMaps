@@ -1,11 +1,4 @@
-# Local build credentials and private configuration
-**/local.properties
-**/key.properties
-**/*.jks
-**/*.keystore
-**/.env
-**/.env.*
-!**/.env.example# ==============================================================================
+# ==============================================================================
 # Superpowers & Claude Code
 # ==============================================================================
 .superpowers/
