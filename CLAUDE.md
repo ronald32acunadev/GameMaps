@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Read `AGENTS.md` first: it defines the mandatory English-only rule and the code-authorship workflow (local LLM providers `pumbastudio`/`pumbalama` synthesize source code, with a Library Context Brief built from the lockfile and the `.context/` cache).
+Read `AGENTS.md` first: it defines the mandatory English-only rule and the code-authorship workflow (local LLM providers `pumbastudio`/`pumbalama` synthesize source code, with a Library Context Brief built from the lockfile and the `.context/` cache). It also requires saving an approved user-story backlog to `docs/userstories/<feature-name>/README.md` before editing implementation files. When the local-LLM MCP call times out, use `python3 scripts/ask_local_llm.py` (see `AGENTS.md`).
 
 ## Project
 

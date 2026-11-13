@@ -10,6 +10,7 @@ Game-inspired navigation on real roads. A standalone Flutter mobile application 
 - [Current Status & Roadmap](#current-status--roadmap)
 - [Architecture & Engine Ownership](#architecture--engine-ownership)
 - [Prerequisites & Android Setup](#prerequisites--android-setup)
+- [AI Workflow & Local LLM Assistance](#ai-workflow--local-llm-assistance)
 - [Development & Verification](#development--verification)
 - [Project Structure](#project-structure)
 - [Security & Permissions](#security--permissions)
@@ -44,10 +45,10 @@ The project follows a phased implementation roadmap detailed in [`Fases/02-imple
 
 **Current Implementation State:**
 - The Flutter application shell lives in [`app/`](app/).
-- Map home renders using `google_navigation_flutter` (0.11.2).
+- Map home renders using `google_navigation_flutter` (`0.11.2`).
 - Native Android location port (`AndroidLocationPort`) provides foreground GPS fixes.
 - Google Places autocomplete (`AndroidPlacesPort`) provides place search and destination selection.
-- All Flutter widget/unit tests (22 tests) and Android native unit tests pass.
+- All Flutter widget/unit tests (22 tests) and Android native unit tests (19 tests) pass.
 
 ---
 
@@ -96,6 +97,17 @@ Required Google Cloud APIs on the key:
 - **Places API (New)**
 
 See [`Fases/04-google-cloud-setup.md`](Fases/04-google-cloud-setup.md) for billing considerations and SHA-1 certificate restriction instructions.
+
+---
+
+## AI Workflow & Local LLM Assistance
+
+This repository enforces an AI agent coding contract governed by [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md):
+- **Local-First Code Authorship**: Source code and tests are synthesized by local LLM providers (`pumbastudio` on LM Studio or `pumbalama` on Ollama) using an offline cache-aside documentation flow (`.context/`).
+- **Local LLM Helper Script**: If an MCP connection times out or reasoning cannot be turned off, use [`scripts/ask_local_llm.py`](scripts/ask_local_llm.py):
+  ```bash
+  python3 scripts/ask_local_llm.py --user prompt.md --out response.md --code-out src/file.dart
+  ```
 
 ---
 
@@ -151,6 +163,9 @@ GameMaps/
 │   ├── 05-validation-and-release.md
 │   ├── 06-development-environment.md
 │   └── 07-android-auto-feasibility.md
+├── scripts/                   # Local LLM and orchestration helper scripts
+│   ├── ask_local_llm.py       # Local LLM querying CLI with fallback support
+│   └── configure_ollama_models.sh
 └── app/                       # Flutter project root
     ├── README.md              # Android map home & connector details
     ├── pubspec.yaml           # Dependencies and Flutter manifest
